@@ -45,7 +45,7 @@ public class evolitivo{
 			default: 
 			System.out.println("error");
 		}
-		
+		System.out.println("Péinate");
 		
 	}
 public static void main(String []agrs){
