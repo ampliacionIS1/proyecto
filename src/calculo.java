@@ -4,11 +4,11 @@ import java.util.Stack;
 
 public class calculo {
 	
-    public static void main(String[] args){
+   /* public static void main(String[] args){
         String expr = " ((2*4) - 4 )* 5";
         String post = postFija(expr);
         System.out.println(evaluar(post));
-    }
+    }*/
     
     public static String evaluar(String expr){
 		//Entrada (Expresión en Postfija)
