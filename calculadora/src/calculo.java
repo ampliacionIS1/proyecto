@@ -4,11 +4,6 @@ import java.util.Stack;
 
 public class calculo {
 	
-   /* public static void main(String[] args){
-        String expr = " ((2*4) - 4 )* 5";
-        String post = postFija(expr);
-        System.out.println(evaluar(post));
-    }*/
     
     public static String evaluar(String expr){
 		//Entrada (Expresión en Postfija)
@@ -33,10 +28,7 @@ public class calculo {
 	      } 
 	    }
 
-	    //Mostrar resultados:
-	    System.out.println("Expresion: " + expr);
-	    System.out.println("Resultado: " + P.peek());
-            return P.peek();
+      return P.peek();
 	  }
 
 	  private static int evaluar(String op, String n2, String n1) {
@@ -96,13 +88,9 @@ public class calculo {
           String infix = expr.replace(" ", "");
           String postfix = S.toString().replaceAll("[\\]\\[,]", "");
 
-          //Mostrar resultados:
-          System.out.println("Expresion Infija: " + infix);
-          System.out.println("Expresion Postfija: " + postfix);
           return postfix;
         }catch(Exception ex){ 
-          System.out.println("Error en la expresión algebraica");
-          System.err.println(ex);
+          return null;
         }
         return null;
     } 
