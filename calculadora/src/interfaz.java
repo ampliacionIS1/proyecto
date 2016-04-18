@@ -6,7 +6,9 @@ import java.awt.Color;
 
 
 import java.awt.Color;
-
+/*
+    Interfaz final
+*/
 
 /*
  * To change this license header, choose License Headers in Project Properties.
