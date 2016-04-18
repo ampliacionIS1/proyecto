@@ -4,8 +4,13 @@ import java.util.Stack;
 
 public class calculo {
 	
+   /* public static void main(String[] args){
+        String expr = " ((2*4) - 4 )* 5";
+        String post = postFija(expr);
+        System.out.println(evaluar(post));
+    }*/
     
-    public static String evaluar(String expr){
+    public static String evaluar(String expr) throws Exception{
 		//Entrada (Expresión en Postfija)
 	    String[] post = expr.split(" ");    
 	    
@@ -19,7 +24,7 @@ public class calculo {
 	    }
 
 	    //Algoritmo de Evaluación Postfija
-	    String operadores = "+-*/%"; 
+	    String operadores = "+-*/"; 
 	    while (!E.isEmpty()) {
 	      if (operadores.contains("" + E.peek())) {
 	        P.push(evaluar(E.pop(), P.pop(), P.pop()) + "");
@@ -28,20 +33,26 @@ public class calculo {
 	      } 
 	    }
 
-      return P.peek();
+	    //Mostrar resultados:
+	    System.out.println("Expresion: " + expr);
+	    System.out.println("Resultado: " + P.peek());
+            return P.peek();
 	  }
 
-	  private static int evaluar(String op, String n2, String n1) {
-	    int num1 = Integer.parseInt(n1);
-	    int num2 = Integer.parseInt(n2);
+	  private static double evaluar(String op, String n2, String n1) throws Exception {
+	    double num1 = Double.parseDouble(n1);
+	    double num2 = Double.parseDouble(n2);
 	    if (op.equals("+")) return (num1 + num2);
 	    if (op.equals("-")) return (num1 - num2);
 	    if (op.equals("*")) return (num1 * num2);
-	    if (op.equals("/")) return (num1 / num2);
-	    if (op.equals("%")) return (num1 % num2);
+	    if (op.equals("/")){
+        if (num2 == 0){
+          throw new Exception("No se puede dividir por 0");
+        }else{return (num1 / num2);}
+      } 
 	    return 0;
 	  }
-    public static String postFija(String cadena){
+    public static String postFija(String cadena) throws Exception{
 	//Entrada de datos
         
         //Depurar la expresion algebraica
@@ -88,11 +99,13 @@ public class calculo {
           String infix = expr.replace(" ", "");
           String postfix = S.toString().replaceAll("[\\]\\[,]", "");
 
+          //Mostrar resultados:
+          System.out.println("Expresion Infija: " + infix);
+          System.out.println("Expresion Postfija: " + postfix);
           return postfix;
         }catch(Exception ex){ 
-          return null;
+          throw new Exception("Error en la expresión algebraica");
         }
-        return null;
     } 
 
   //Depurar expresión algebraica
@@ -114,7 +127,6 @@ public class calculo {
   //Jerarquia de los operadores
   private static int pref(String op) {
     int prf = 99;
-    if (op.equals("^")) prf = 5;
     if (op.equals("*") || op.equals("/")) prf = 4;
     if (op.equals("+") || op.equals("-")) prf = 3;
     if (op.equals(")")) prf = 2;
